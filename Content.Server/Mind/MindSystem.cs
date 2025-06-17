@@ -211,13 +211,13 @@ public sealed class MindSystem : SharedMindSystem
                 ? _transform.ToMapCoordinates(_gameTicker.GetObserverSpawnPoint())
                 : _transform.GetMapCoordinates(mind.OwnedEntity.Value);
 
-            entity = Spawn(GameTicker.ObserverPrototypeName, position);
+            //entity = Spawn(GameTicker.ObserverPrototypeName, position);
             component = EnsureComp<MindContainerComponent>(entity.Value);
             var ghostComponent = Comp<GhostComponent>(entity.Value);
             _ghosts.SetCanReturnToBody((entity.Value, ghostComponent), false);
         }
 
-       /* var oldEntity = mind.OwnedEntity;
+        var oldEntity = mind.OwnedEntity;
         if (TryComp(oldEntity, out MindContainerComponent? oldContainer))
         {
             oldContainer.Mind = null;
@@ -228,7 +228,7 @@ public sealed class MindSystem : SharedMindSystem
             RaiseLocalEvent(mindId, new MindGotRemovedEvent(mindEnt, containerEnt));
             Dirty(oldEntity.Value, oldContainer);
         }
-        */
+        
         // Don't do the full deletion cleanup if we're transferring to our VisitingEntity
         if (alreadyAttached)
         {
