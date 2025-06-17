@@ -254,7 +254,7 @@ public sealed class MindSystem : SharedMindSystem
             Log.Info($"Session {userSession.Name} transferred to entity {entity}.");
         }
 
-        /*if (entity != null)
+        if (entity != null)
         {
             component!.Mind = mindId;
             mind.OwnedEntity = entity;
@@ -264,7 +264,7 @@ public sealed class MindSystem : SharedMindSystem
             RaiseLocalEvent(entity.Value, new MindAddedMessage(mindEnt, containerEnt));
             RaiseLocalEvent(mindId, new MindGotAddedEvent(mindEnt, containerEnt));
             Dirty(entity.Value, component);
-        }*/
+        }
     }
 
     /// <summary>
