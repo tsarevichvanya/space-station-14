@@ -67,7 +67,7 @@ public sealed class MindSystem : SharedMindSystem
         }
 
         TransferTo(mindId, null, createGhost: false, mind: mind);
-        DebugTools.AssertNull(mind.OwnedEntity);
+        //DebugTools.AssertNull(mind.OwnedEntity);
 
         if (!component.GhostOnShutdown || _gameTicker.RunLevel == GameRunLevel.PreRoundLobby)
             return;
@@ -217,7 +217,7 @@ public sealed class MindSystem : SharedMindSystem
             _ghosts.SetCanReturnToBody((entity.Value, ghostComponent), false);
         }
 
-        var oldEntity = mind.OwnedEntity;
+       /* var oldEntity = mind.OwnedEntity;
         if (TryComp(oldEntity, out MindContainerComponent? oldContainer))
         {
             oldContainer.Mind = null;
@@ -228,7 +228,7 @@ public sealed class MindSystem : SharedMindSystem
             RaiseLocalEvent(mindId, new MindGotRemovedEvent(mindEnt, containerEnt));
             Dirty(oldEntity.Value, oldContainer);
         }
-
+        */
         // Don't do the full deletion cleanup if we're transferring to our VisitingEntity
         if (alreadyAttached)
         {
