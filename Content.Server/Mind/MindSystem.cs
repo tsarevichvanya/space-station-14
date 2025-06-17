@@ -207,9 +207,9 @@ public sealed class MindSystem : SharedMindSystem
             // If people want to create a ghost, that should be done explicitly via some TransferToGhost() method, not
             // not implicitly via optional arguments.
 
-           // var position = Deleted(mind.OwnedEntity)
-           //     ? _transform.ToMapCoordinates(_gameTicker.GetObserverSpawnPoint())
-           //     : _transform.GetMapCoordinates(mind.OwnedEntity.Value);
+            var position = Deleted(mind.OwnedEntity)
+                ? _transform.ToMapCoordinates(_gameTicker.GetObserverSpawnPoint())
+                : _transform.GetMapCoordinates(mind.OwnedEntity.Value);
 
             entity = Spawn(GameTicker.ObserverPrototypeName, position);
             component = EnsureComp<MindContainerComponent>(entity.Value);
@@ -254,7 +254,7 @@ public sealed class MindSystem : SharedMindSystem
             Log.Info($"Session {userSession.Name} transferred to entity {entity}.");
         }
 
-        if (entity != null)
+        /*if (entity != null)
         {
             component!.Mind = mindId;
             mind.OwnedEntity = entity;
@@ -264,7 +264,7 @@ public sealed class MindSystem : SharedMindSystem
             RaiseLocalEvent(entity.Value, new MindAddedMessage(mindEnt, containerEnt));
             RaiseLocalEvent(mindId, new MindGotAddedEvent(mindEnt, containerEnt));
             Dirty(entity.Value, component);
-        }
+        }*/
     }
 
     /// <summary>
